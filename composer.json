@@ -1,0 +1,29 @@
+{
+    "name": "u2y/hubspot",
+    "version": "0.0.1",
+    "description": "Hubspot Package by Up2You",
+    "homepage": "https://u2y.io",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Alessandro Pietrantonio",
+            "homepage": "https://u2y.io"
+        }
+    ],
+    "require": {
+        "php": ">=7.3",
+        "hubspot/api-client": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "U2y\\Hubspot\\" : "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "U2y\\Hubspot\\HubspotServiceProvider"
+            ]
+        }
+    }
+}
