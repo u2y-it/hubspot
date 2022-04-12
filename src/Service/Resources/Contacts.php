@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Services\Hubspot\Resources;
+namespace U2y\Hubspot\Services\Hubspot\Resources;
 
 use HubSpot\Client\Crm\Contacts\Model\Filter;
 use HubSpot\Client\Crm\Contacts\Model\FilterGroup;

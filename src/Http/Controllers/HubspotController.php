@@ -3,13 +3,12 @@
 namespace U2y\Hubspot\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Hubspot\HubspotToken;
-use App\Services\Hubspot\HubspotService;
 use HubSpot\Factory;
 use HubSpot\Client\Auth\OAuth\ApiException;
 use HubSpot\Utils\OAuth2;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use U2y\Hubspot\Models\HubspotToken;
 
 class HubspotController extends Controller
 {

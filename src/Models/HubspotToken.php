@@ -1,6 +1,6 @@
 <?php
 
-namespace U2y\Hubspot\Models\Hubspot;
+namespace U2y\Hubspot\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

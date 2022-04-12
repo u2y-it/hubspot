@@ -1,16 +1,13 @@
 <?php 
 
-namespace App\Services\Hubspot;
+namespace U2y\Hubspot\Services\Hubspot;
 
-use App\Models\Hubspot\HubspotToken;
-// use App\Services\Hubspot\Traits\HasContacts;
+use U2y\Hubspot\Models\HubspotToken;
 use HubSpot\Factory;
 use Illuminate\Support\Facades\Http;
 
 class HubspotService
 {
-    // use HasContacts;
-
     public $client;
 
     public function __construct($client = null)
