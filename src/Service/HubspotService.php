@@ -1,6 +1,6 @@
 <?php 
 
-namespace U2y\Hubspot\Services\Hubspot;
+namespace U2y\Hubspot\Services;
 
 use U2y\Hubspot\Models\HubspotToken;
 use HubSpot\Factory;
@@ -20,7 +20,7 @@ class HubspotService
     
     public function __call($name, $arguments = null)
     {
-        $classname = 'App\\Services\\Hubspot\\Resources\\' . \Str::ucfirst(\Str::camel($name));
+        $classname = 'U2y\\Hubspot\\Services\\Resources\\' . \Str::ucfirst(\Str::camel($name));
         if (class_exists($classname)) {
             return new $classname($this->client);
         }

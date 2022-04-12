@@ -9,7 +9,7 @@ use HubSpot\Utils\OAuth2;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use U2y\Hubspot\Models\HubspotToken;
-use U2y\Hubspot\Services\Hubspot\HubspotService;
+use U2y\Hubspot\Services\HubspotService;
 
 class HubspotController extends Controller
 {
