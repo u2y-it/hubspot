@@ -12,9 +12,9 @@
     <div class="w-full">
 
         @if(session()->has('message'))
-        <div class="bg-green-normal rounded-2xl p-8">
+        <div class="bg-green-normal break-all mb-12 mt-12 mx-auto p-8 rounded-2xl w-3/4">
             <div>
-                <p class="text-sm">
+                <p class="text-sm text-white">
                     {{ session()->get('message') }}
                 </p>
             </div>
