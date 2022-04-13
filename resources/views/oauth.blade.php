@@ -10,6 +10,17 @@
 </head>
 <body>
     <div class="w-full">
+
+        @if(session()->has('message'))
+        <div class="bg-green-normal rounded-2xl p-8">
+            <div>
+                <p class="text-sm">
+                    {{ session()->get('message') }}
+                </p>
+            </div>
+        </div>
+        @endif
+
         @if($token)
         <div class="mt-12 text-center ">
             <p class="text-md">

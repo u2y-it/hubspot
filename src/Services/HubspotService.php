@@ -5,6 +5,7 @@ namespace U2y\Hubspot\Services;
 use U2y\Hubspot\Models\HubspotToken;
 use HubSpot\Factory;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 class HubspotService
 {
@@ -20,7 +21,7 @@ class HubspotService
     
     public function __call($name, $arguments = null)
     {
-        $classname = 'U2y\\Hubspot\\Services\\Resources\\' . \Str::ucfirst(\Str::camel($name));
+        $classname = 'U2y\\Hubspot\\Services\\Resources\\' . Str::ucfirst(Str::camel($name));
         if (class_exists($classname)) {
             return new $classname($this->client);
         }
