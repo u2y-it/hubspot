@@ -23,9 +23,5 @@ class HubspotServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/hubspot'),
         ]);
-
-        $this->publishes([
-            __DIR__.'/../public' => public_path('vendor/hubspot'),
-        ], 'public');
     }
 }
