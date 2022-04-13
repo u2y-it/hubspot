@@ -34,7 +34,7 @@ class HubspotController extends Controller
             echo "Exception when calling access_tokens_api->get_access_token: ", $e->getMessage();
         }
 
-        Session::put('message', 'Token generato: ' . $token->access_token);
+        Session::flash('message', 'Token generato: ' . $token->access_token);
 
         return redirect()->route('hubspot.auth');
     }
