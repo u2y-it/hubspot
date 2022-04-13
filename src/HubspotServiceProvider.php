@@ -8,10 +8,6 @@ class HubspotServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $configPath = __DIR__ . '/../config/hubspot.php';
         $this->mergeConfigFrom($configPath, 'hubspot');
-
-        $this->publishes([
-            __DIR__.'/../public' => public_path('vendor/hubspot'),
-        ], 'public');
     }
     
     public function boot()
@@ -27,5 +23,9 @@ class HubspotServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/hubspot'),
         ]);
+
+        $this->publishes([
+            __DIR__.'/../public' => public_path('vendor/hubspot'),
+        ], 'public');
     }
 }
