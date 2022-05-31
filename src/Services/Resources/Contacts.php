@@ -2,13 +2,14 @@
 
 namespace U2y\Hubspot\Services\Resources;
 
-use HubSpot\Client\Crm\Contacts\Model\Filter;
-use HubSpot\Client\Crm\Contacts\Model\FilterGroup;
 use HubSpot\Client\Crm\Contacts\Model\PublicObjectSearchRequest;
 use HubSpot\Client\Crm\Contacts\Model\SimplePublicObjectInput;
+use U2y\Hubspot\Services\Traits\Filter;
 
 class Contacts
 {
+    use Filter;
+
     public $client;
 
     public function __construct($client)
@@ -35,8 +36,8 @@ class Contacts
 
     public function getByEmail(string $email)
     {
-        $filterGroup = $this->filterByEmail($email);
-        $searchRequest = $this->createSearchRequest($filterGroup);
+        $filterGroups = $this->filterByEmail($email);
+        $searchRequest = $this->createSearchRequest($filterGroups);
         $contactsPage = $this->client->crm()->contacts()->searchApi()->doSearch($searchRequest);
 
         if (empty($contactsPage->getResults())) {
@@ -46,33 +47,24 @@ class Contacts
         return $contactsPage->getResults()[0];
     }
 
-    private function getFilter(string $field, string $value)
+    /**
+     * Filtro per email principale e anche per le secondarie
+     *
+     * @param string $email
+     * @return array
+     */
+    private function filterByEmail(string $email): array
     {
-        $filter = new Filter();
-        $filter->setOperator('EQ')
-            ->setPropertyName($field)
-            ->setValue($value);
-        return $filter;
+        return [
+            $this->filter('email', $email),
+            $this->filterContains('hs_additional_emails', $email)
+        ];
     }
 
-    private function filter(string $field, string $value)
-    {
-        $filter = $this->getFilter($field, $value);
-
-        $filterGroup = new FilterGroup();
-        $filterGroup->setFilters([$filter]);
-        return $filterGroup;
-    }
-
-    private function filterByEmail(string $email)
-    {
-        return $this->filter('email', $email);
-    }
-
-    private function createSearchRequest($filterGroup)
+    private function createSearchRequest(array $filterGroups)
     {
         $searchRequest = new PublicObjectSearchRequest();
-        $searchRequest->setFilterGroups([$filterGroup]);
+        $searchRequest->setFilterGroups([...$filterGroups]);
         return $searchRequest;
     }
 }
