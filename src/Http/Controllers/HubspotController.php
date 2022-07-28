@@ -14,14 +14,12 @@ class HubspotController extends Controller
     public function index()
     {
         $token = HubspotToken::orderBy('expire_at', 'desc')->first();
-        
+
         return view('hubspot::oauth')
             ->with('hubspot_url', OAuth2::getAuthUrl(
-                config('hubspot.client_id'), 
-                route('hubspot.auth_callback'), [
-                    'crm.objects.contacts.read',
-                    'crm.objects.contacts.write'
-                ]
+                config('hubspot.client_id'),
+                route('hubspot.auth_callback'),
+                config('hubspot.scopes')
             ))
             ->with('token', $token);
     }
