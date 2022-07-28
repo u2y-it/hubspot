@@ -11,11 +11,11 @@
         }
     ],
     "require": {
-        "php": ">=7.3",
-        "hubspot/api-client": "^8.0",
-        "illuminate/routing": "^8",
-        "illuminate/session": "^8",
-        "illuminate/support": "^8"
+        "php": ">=8.1",
+        "hubspot/api-client": "^9.0",
+        "illuminate/routing": "^9",
+        "illuminate/session": "^9",
+        "illuminate/support": "^9"
     },
     "autoload": {
         "psr-4": {
