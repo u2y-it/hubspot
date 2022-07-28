@@ -20,6 +20,6 @@ class Deals
             return null;
         }
 
-        return $dealsPage->getResults()[0];
+        return $dealsPage->getResults();
     }
 }
