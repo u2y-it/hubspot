@@ -4,7 +4,7 @@ namespace U2y\Hubspot\Services\Resources;
 
 use U2y\Hubspot\Services\Traits\Filter;
 use HubSpot\Client\Crm\Contacts\Model\PublicObjectSearchRequest;
-use U2y\Hubspot\Traits\FormatResponse;
+use U2y\Hubspot\Services\Traits\FormatResponse;
 
 class Deals
 {

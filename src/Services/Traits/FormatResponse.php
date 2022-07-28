@@ -1,6 +1,6 @@
 <?php 
 
-namespace U2y\Hubspot\Traits;
+namespace U2y\Hubspot\Services\Traits;
 
 trait FormatResponse
 {
