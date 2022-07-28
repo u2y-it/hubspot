@@ -25,6 +25,15 @@ trait Filter
         return $filter;
     }
 
+    private function getFilterIn(string $field, array $values)
+    {
+        $filter = new ModelFilter();
+        $filter->setOperator('IN')
+            ->setPropertyName($field)
+            ->setValues($values);
+        return $filter;
+    }
+
     protected function filter(string $field, string $value)
     {
         $filter = $this->getFilter($field, $value);
@@ -37,6 +46,15 @@ trait Filter
     protected function filterContains(string $field, string $value)
     {
         $filter = $this->getFilterContains($field, $value);
+
+        $filterGroup = new FilterGroup();
+        $filterGroup->setFilters([$filter]);
+        return $filterGroup;
+    }   
+
+    protected function filterIn(string $field, array $values)
+    {
+        $filter = $this->getFilterIn($field, $values);
 
         $filterGroup = new FilterGroup();
         $filterGroup->setFilters([$filter]);
