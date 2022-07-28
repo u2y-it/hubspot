@@ -22,4 +22,13 @@ class Deals
 
         return $dealsPage->getResults();
     }
+
+    public function formattedList()
+    {
+        $list = $this->list();
+        if(!$list) {
+            return null;
+        }
+        return json_decode(json_encode($list));
+    }
 }
