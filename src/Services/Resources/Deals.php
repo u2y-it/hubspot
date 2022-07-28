@@ -13,7 +13,8 @@ class Deals
 
     public function list()
     {
-        $dealsPage = $this->client->crm()->deals()->basicApi()->getPage(1000, null, null, null, null, false);;
+        // max 100 per page
+        $dealsPage = $this->client->crm()->deals()->basicApi()->getPage(100, null, null, null, null, false);
 
         if (empty($dealsPage->getResults())) {
             return null;
