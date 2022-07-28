@@ -2,9 +2,9 @@
 
 namespace U2y\Hubspot\Traits;
 
-trait FormatReponse
+trait FormatResponse
 {
-    public function format($response)
+    public function formatResponse($response)
     {
         if(!$response) {
             return null;
