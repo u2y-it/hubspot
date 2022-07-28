@@ -4,10 +4,11 @@ namespace U2y\Hubspot\Services\Resources;
 
 use U2y\Hubspot\Services\Traits\Filter;
 use HubSpot\Client\Crm\Contacts\Model\PublicObjectSearchRequest;
+use U2y\Hubspot\Traits\FormatReponse;
 
 class Deals
 {
-    use Filter;
+    use Filter, FormatReponse;
     
     public $client;
 
@@ -30,11 +31,7 @@ class Deals
 
     public function formattedList()
     {
-        $list = $this->list();
-        if(!$list) {
-            return null;
-        }
-        return json_decode(json_encode($list));
+        return $this->format($this->list());
     }
 
     public function listByStages(array $stages)
@@ -52,11 +49,7 @@ class Deals
 
     public function formattedListByStages(array $stages)
     {
-        $list = $this->listByStages($stages);
-        if(!$list) {
-            return null;
-        }
-        return json_decode(json_encode($list));
+        return $this->format($this->listByStages($stages));
     }
 
     private function filterByStages(array $stages): array
