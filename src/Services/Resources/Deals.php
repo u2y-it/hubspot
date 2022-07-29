@@ -79,6 +79,7 @@ class Deals
     public function create()
     {
         // TODO
+        return null;
     }
 
     public function formattedListByStages(array $stages, array $options = [])
