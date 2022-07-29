@@ -76,6 +76,11 @@ class Deals
         return $deals;
     }
 
+    public function create()
+    {
+        // TODO
+    }
+
     public function formattedListByStages(array $stages, array $options = [])
     {
         return $this->formatResponse($this->listByStages($stages, $options));
