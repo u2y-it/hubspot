@@ -59,7 +59,7 @@ class Deals
 
     // Usiamo questo metodo con un client ad hoc ed evitiamo di usare quello ufficiale di HS
     // perché sembra esserci un problema con il search sulle deals
-    public function listByStages(array $stages)
+    public function listByStages(array $stages, array $options = [])
     {
         // Forzo il refresh eventuale del token
         new HubspotService();
@@ -69,11 +69,16 @@ class Deals
             throw new \Exception('Not Hubspot token found. Please generate one');
         }
 
-        $result = Http::withToken($last_token->access_token)->post('https://api.hubapi.com/crm/v3/objects/deals/search', [ 
-                'filterGroups' => $this->filterByStages($stages),
-                'limit' => 100, 
-                'after' => 0
-            ]);
+        $result = Http::withToken($last_token->access_token)->post('https://api.hubapi.com/crm/v3/objects/deals/search', 
+            array_merge(
+                [ 
+                    'filterGroups' => $this->filterByStages($stages),
+                    'limit' => 100, 
+                    'after' => 0
+                ],
+                $options
+            )
+        );
 
         $this->manageRequestErrors($result);
                 
@@ -86,9 +91,9 @@ class Deals
         return $deals;
     }
 
-    public function formattedListByStages(array $stages)
+    public function formattedListByStages(array $stages, array $options = [])
     {
-        return $this->formatResponse($this->listByStages($stages));
+        return $this->formatResponse($this->listByStages($stages, $options));
     }
 
     private function filterByStages(array $stages): array
