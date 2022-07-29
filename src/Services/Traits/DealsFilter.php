@@ -77,4 +77,21 @@ trait DealsFilter
         $filterGroup->setFilters([$filter]);
         return $filterGroup;
     } 
+    
+    private function getFilterContainsToken(string $field)
+    {
+        $filter = new ModelFilter();
+        $filter->setOperator('CONTAINS_TOKEN')
+            ->setPropertyName($field);
+        return $filter;
+    }
+
+    protected function filterContainsToken(string $field)
+    {
+        $filter = $this->getFilterContainsToken($field);
+
+        $filterGroup = new FilterGroup();
+        $filterGroup->setFilters([$filter]);
+        return $filterGroup;
+    } 
 }
