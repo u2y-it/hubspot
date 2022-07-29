@@ -60,4 +60,21 @@ trait DealsFilter
         $filterGroup->setFilters([$filter]);
         return $filterGroup;
     }    
+    
+    private function getFilterHasProperty(string $field)
+    {
+        $filter = new ModelFilter();
+        $filter->setOperator('HAS_PROPERTY')
+            ->setPropertyName($field);
+        return $filter;
+    }
+
+    protected function filterHasProperty(string $field)
+    {
+        $filter = $this->getFilterHasProperty($field);
+
+        $filterGroup = new FilterGroup();
+        $filterGroup->setFilters([$filter]);
+        return $filterGroup;
+    } 
 }

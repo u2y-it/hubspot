@@ -42,36 +42,6 @@ class Deals
         return $this->formatResponse($this->list());
     }
 
-    // Questa dovrebbe essere la chiamata corretta con il client ufficiale di HS, ma pare non funzionare
-    public function listByStagesHs(array $stages)
-    {
-        $filter = new ModelFilter();
-        $filter->setOperator('IN')
-            ->setPropertyName('dealstage')
-            ->setValues($stages);
-
-        $filterGroup = new FilterGroup();
-        $filterGroup->setFilters([$filter]);
-
-        // $filterGroups = $this->filterByStages($stages);
-        $searchRequest = new PublicObjectSearchRequest();
-        $searchRequest->setFilterGroups([$filterGroup]);
-        $searchRequest->setLimit(100);
-        $searchRequest->setSorts([
-            [
-                'propertyName' => 'createdate',
-                'direction' => 'DESCENDING'
-            ]
-        ]);
-        // $searchRequest->setProperties(["hs_object_id"]);
-        // $searchRequest->setAfter(0);
-        $deals = $this->client->crm()->deals()->searchApi()->doSearch($searchRequest);
-        if (empty($deals->getResults())) {
-            return null;
-        }
-        return $deals->getResults();
-    }
-
     // Usiamo questo metodo con un client ad hoc ed evitiamo di usare quello ufficiale di HS
     // perché sembra esserci un problema con il search sulle deals
     public function listByStages(array $stages, array $options = [])
