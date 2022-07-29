@@ -14,6 +14,8 @@ class Deals
 {
     use Filter, FormatResponse;
 
+    public const STATUS_ERROR = 'error';
+
     public $client;
 
     public function __construct($client)
@@ -72,6 +74,8 @@ class Deals
                 'limit' => 100, 
                 'after' => 0
             ]);
+
+        $this->manageRequestErrors($result);
                 
         $deals = $result->json()['results'];
 
@@ -99,5 +103,12 @@ class Deals
         $searchRequest = new PublicObjectSearchRequest();
         $searchRequest->setFilterGroups([...$filterGroups]);
         return $searchRequest;
+    }
+
+    private function manageRequestErrors($result)
+    {
+        if (isset($result->json()['status']) && $result->json()['status'] === self::STATUS_ERROR) {
+            throw new \Exception($result->json()['message']);
+        }
     }
 }
