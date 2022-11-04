@@ -1,6 +1,6 @@
 {
     "name": "u2y/hubspot",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "Hubspot Package by Up2You",
     "homepage": "https://u2y.io",
     "license": "Apache-2.0",
@@ -11,11 +11,11 @@
         }
     ],
     "require": {
-        "php": ">=8.1",
-        "hubspot/api-client": "^8.3",
-        "illuminate/routing": "^9",
-        "illuminate/session": "^9",
-        "illuminate/support": "^9"
+        "php": ">=7.4",
+        "hubspot/api-client": "^8.0",
+        "illuminate/routing": "^8",
+        "illuminate/session": "^8",
+        "illuminate/support": "^8"
     },
     "autoload": {
         "psr-4": {
