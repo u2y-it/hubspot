@@ -17,6 +17,27 @@ class Contacts
         $this->client = $client;
     }
 
+    public function create(array $resource)
+    {        
+        $contact_props = new SimplePublicObjectInput();
+        $contact_props->setProperties(
+            $resource
+        );
+        // creo il contatto
+        return $this->client->crm()->contacts()->basicApi()->create($contact_props);
+    }
+
+    public function updateByEmail(string $email, array $resource)
+    {     
+        $contact = $this->getByEmail($email);   
+        $contact_props = new SimplePublicObjectInput();
+        $contact_props->setProperties(
+            $resource
+        );
+        // aggiorno il contatto
+        return $this->client->crm()->contacts()->basicApi()->update($contact->getId(), $contact_props);
+    }
+
     public function createOrUpdateByEmail(string $email, array $resource)
     {
         $contact = $this->getByEmail($email);
