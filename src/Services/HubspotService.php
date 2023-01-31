@@ -36,7 +36,7 @@ class HubspotService
             throw new \Exception('Not Hubspot token found. Please generate one');
         }
 
-        if ($last_token->expire_at <= now()->subMinute()) {
+        if ($last_token->expire_at >= now()->subMinute()) {
             // refresh del token
             $response = self::refreshToken($last_token->refresh_token);
             $last_token = $this->saveTokenByResponse($response);
